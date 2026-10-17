@@ -1,0 +1,31 @@
+{% extends "admin/admin_base.html" %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Membership</th>
+      <th scope="col">Height</th>
+      <th scope="col">Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{i.name}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.membership}}</td>
+      <td>{{i.height}}</td>
+<!--      <td>{{i.weight}}</td>-->
+
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
