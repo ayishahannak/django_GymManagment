@@ -1,0 +1,40 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Fee</th>
+            <th>Approve</th>
+            <th>Reject</th>
+        </tr>
+    </thead>
+
+
+<tbody>
+    {% for i in bookings %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.client }}</td>
+        <td>{{ i.schedule.start_time }}</td>
+        <td>{{ i.schedule.end_time }}</td>
+        <td>{{ i.schedule.fee }}</td>
+
+
+        <td><a href="{% url 'approve_booking' i.id %}" class="btn btn-success">Approve</a></td>
+        <td><a href="{% url 'reject_booking' i.id %}" class="btn btn-danger">Reject</a></td>
+    </tr>
+
+    {% endfor %}
+</tbody>
+
+
+</table>
+
+{% endblock %}

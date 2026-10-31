@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'newproject.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "gym_management",
+        "NAME": "gym_management_db",
         "USER": "postgres",
         "PASSWORD": "1212",
         "HOST": "127.0.0.1",

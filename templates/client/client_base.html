@@ -57,13 +57,13 @@
         <div class="sidebar-menu-title">Components</div>
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <a href=" {% static 'tables-basic.html' %} " class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
+            <a href=" {% url 'booking_page' %} " class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
               <i class="bi bi-table"></i>
-              <span>Basic Tables</span>
+              <span>Bookings</span>
             </a>
           </li>
           <li class="sidebar-menu-item">
-            <a href=" {% static 'ui-forms.html' %} " class="sidebar-menu-link" id="menu-uiforms" title="Forms and Input">
+            <a href=" {% static 'ui-forms.html' %} " class="sidebaendblor-menu-link" id="menu-uiforms" title="Forms and Input">
               <i class="bi bi-input-cursor-text"></i>
               <span>Forms & Input</span>
             </a>
@@ -370,7 +370,58 @@
           <div class="col-12">
             <div class="card mb-0">
               <div class="card-header mb-2">
-                <h2 class="card-title">Welcome</h2>
+
+
+{% block content %}
+
+<div class="container-fluid  p-4">
+    <h2 class="text-danger mb-4">Gym Opening and Closing Times</h2>
+
+    {% for i in data %}
+    <div class="card shadow-sm mb-4 d-flex">
+        <div class="card-body">
+            <div class="row g-4">
+
+
+                <div class="col-md-6 d-flex">
+                    <div class="card h-100 shadow-sm bg-warning-subtle ">
+                        <div class="card-body text-center p-4 ">
+
+                            <h3 class="mb-4">Start Time</h3>
+
+                            <p class="text-muted mb-1">Opening Time</p>
+                            <h4>{{ i.start_time}}</h4>
+
+                            <hr>
+
+                            <p class="text-muted mb-1">Closing Time</p>
+                            <h4>{{ i.end_time}}</h4>
+
+               <a href="{% url 'join_gym' i.id %}" class="btn btn-success mt-3 px-4">
+                 Join
+                          </a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
                 <!-- Custom Static Legends -->
 <!--                <div class="d-flex gap-3 align-items-center">-->
 <!--                  <div class="chart-legend-item">-->

@@ -10,6 +10,8 @@ class Login (AbstractUser):
 
 class Trainer(models.Model):
     trainer = models.OneToOneField(Login,on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
+    is_blocked = models.BooleanField(default=False)
     name = models.CharField(max_length=30)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
@@ -23,6 +25,8 @@ class Trainer(models.Model):
 
 class Client(models.Model):
     client = models.OneToOneField(Login,on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
+    is_blocked = models.BooleanField(default=False)
     name = models.CharField(max_length=20)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
@@ -34,5 +38,16 @@ class Client(models.Model):
         return self.name
 
 
+class Schedule(models.Model):
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    fee = models.IntegerField()
+
+def __str__(self):
+    return f"{self.start_time} - {self.end_time}"
 
 
+class Booking(models.Model):
+    client = models.ForeignKey(Client,on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule,on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)

@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from newapp.forms import LoginForm, ClientForm, TrainerForm
-
-
+from newapp.models import Client, Trainer
 
 
 # Create your views here.
@@ -71,14 +70,61 @@ def trainer_add(request):
 
 
 
+# def login_view(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('uname')
+#         password = request.POST.get('pass')
+#
+#         user = authenticate(request,username=username,password=password)
+#
+#         if user is not None:
+#             login(request, user)
+#
+#             if user.is_staff:
+#                 return redirect('admin_home/')
+#
+#             elif user.is_client:
+#                 return redirect('client_home/')
+#
+#             elif user.is_trainer:
+#                 return redirect('trainer_home/')
+#
+#         else:
+#             print('invalid')
+#
+#     return render(request, "login.html")
+
+
+
+
+
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('uname')
         password = request.POST.get('pass')
 
-        user = authenticate(request,username=username,password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
+
+            if user.is_client:
+                client = Client.objects.get(client=user)
+
+                if client.is_blocked or client.is_deleted:
+                    return render(request, "login.html", {
+                        "error": "Your account is blocked. You cannot log in."
+                    })
+
+            elif user.is_trainer:
+                trainer = Trainer.objects.get(trainer=user)
+
+                if trainer.is_blocked or trainer.is_deleted:
+                    return render(request, "login.html", {
+                        "error": "Your account is blocked. You cannot log in."
+                    })
+
             login(request, user)
 
             if user.is_staff:
@@ -91,11 +137,7 @@ def login_view(request):
                 return redirect('trainer_home/')
 
         else:
-            print('invalid')
+            return render(request, "login.html", {"error": "Invalid username or password."})
 
     return render(request, "login.html")
-
-
-
-
 

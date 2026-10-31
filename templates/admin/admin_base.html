@@ -57,21 +57,33 @@
         <div class="sidebar-menu-title">Components</div>
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <a href=" {% static 'tables-basic.html' %} " class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
+            <a href=" {% url 'admin_trainer_view' %} " class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
               <i class="bi bi-table"></i>
-              <span>Basic Tables</span>
+              <span>View Trainers</span>
             </a>
           </li>
           <li class="sidebar-menu-item">
-            <a href=" {% static 'ui-forms.html' %} " class="sidebar-menu-link" id="menu-uiforms" title="Forms and Input">
+            <a href=" {% url 'admin_client_view' %} " class="sidebar-menu-link" id="menu-uiforms" title="Forms and Input">
               <i class="bi bi-input-cursor-text"></i>
-              <span>Forms & Input</span>
+              <span>View Clients</span>
             </a>
           </li>
           <li class="sidebar-menu-item">
-            <a href=" {% static 'ui-buttons.html' %} " class="sidebar-menu-link" id="menu-uibuttons" title="Buttons">
+            <a href=" {% url 'booking_page_admin' %} " class="sidebar-menu-link" id="menu-uiforms2" title="Forms and Input">
+              <i class="bi bi-input-cursor-text"></i>
+              <span>Bookings</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href=" {% url 'time_schedule' %} " class="sidebar-menu-link" id="menu-uibuttons" title="Buttons">
               <i class="bi bi-menu-button-wide-fill"></i>
-              <span>Buttons & Alerts</span>
+              <span>Set Schedules</span>
+            </a>
+          </li>
+                    <li class="sidebar-menu-item">
+            <a href=" {% url 'time_schedule_view' %} " class="sidebar-menu-link" id="menu-uibuttons1" title="Buttons">
+              <i class="bi bi-menu-button-wide-fill"></i>
+              <span>View Schedules</span>
             </a>
           </li>
         </ul>
@@ -138,11 +150,11 @@
 
         <!-- Quick Actions Dropdown -->
         <div class="dropdown ms-2">
-          <button class="btn-quick-action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-            id="quick-actions-dropdown">
-            <i class="bi bi-plus-lg"></i>
-            <span>Create</span>
-          </button>
+<!--          <button class="btn-quick-action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"-->
+<!--            id="quick-actions-dropdown">-->
+<!--            <i class="bi bi-plus-lg"></i>-->
+<!--            <span>Create</span>-->
+<!--          </button>-->
           <ul class="dropdown-menu dropdown-menu-quick-action" aria-labelledby="quick-actions-dropdown">
             <li class="dropdown-header">Quick Action Shortcuts</li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-plus"></i> New Invoice</a></li>
@@ -372,7 +384,9 @@
               <div class="card-header mb-2">
                 {% block content %}
                 <h2 class="card-title">Welcome</h2>
+
                 {% endblock %}
+
                 <!-- Custom Static Legends -->
 <!--                <div class="d-flex gap-3 align-items-center">-->
 <!--                  <div class="chart-legend-item">-->

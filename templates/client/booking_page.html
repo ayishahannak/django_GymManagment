@@ -1,0 +1,38 @@
+{% extends 'client/client_base.html' %}
+
+{% block content %}
+
+<table cellpadding="10" cellspacing="5">
+    <tr>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Schedule</th>
+        <th>Status</th>
+    </tr>
+
+
+{% for i in bookings %}
+<tr>
+    <td>{{ i.id }}</td>
+    <td>{{ i.client }}</td>
+    <td>{{ i.schedule.start_time }} - {{ i.schedule.end_time }}</td>
+
+    <td>
+        {% if i.status == 0 %}
+            pending
+        {% elif i.status == 1 %}
+            confirmed
+        {% elif i.status == 2 %}
+            no slot available
+        {% endif %}
+    </td>
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+<br>
+
+{% endblock %}

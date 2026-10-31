@@ -95,6 +95,9 @@
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST">
 						{% csrf_token %}
+						 {% if error %}
+        <p style="color: red; text-align: center;">{{ error }}</p>
+    {% endif %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>

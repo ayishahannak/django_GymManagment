@@ -100,6 +100,8 @@ body {
       <div class="main">
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
+
+                {% block content %}
 <!--               <form>-->
 <!--                  <div class="form-group">-->
 <!--                     <label>User Name</label>-->
@@ -118,6 +120,8 @@ body {
     {{form2|crispy}}
     <button type="submit">submit</button>
 </form>
+
+                {% endblock %}
 
             </div>
          </div>
