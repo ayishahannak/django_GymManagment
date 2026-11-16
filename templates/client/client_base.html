@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spark Admin - Premium Bootstrap 5 Admin Dashboard Template</title>
+  <title>Spark Customer - Premium Bootstrap 5 Admin Dashboard Template</title>
 
   <!-- SEO Optimization -->
   <meta name="description" content="Spark Admin - Premium Bootstrap 5 Admin Dashboard Template">
@@ -57,23 +57,32 @@
         <div class="sidebar-menu-title">Components</div>
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
+            <a href=" {% url 'client_profile' %} " class="sidebar-menu-link" id="menu-uibuttons" title="Buttons">
+              <i class="bi bi-menu-button-wide-fill"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+
+
+          <li class="sidebar-menu-item">
             <a href=" {% url 'booking_page' %} " class="sidebar-menu-link" id="menu-basictables" title="Basic Tables">
               <i class="bi bi-table"></i>
               <span>Bookings</span>
             </a>
           </li>
           <li class="sidebar-menu-item">
-            <a href=" {% static 'ui-forms.html' %} " class="sidebaendblor-menu-link" id="menu-uiforms" title="Forms and Input">
-              <i class="bi bi-input-cursor-text"></i>
-              <span>Forms & Input</span>
-            </a>
-          </li>
-          <li class="sidebar-menu-item">
-            <a href=" {% static 'ui-buttons.html' %} " class="sidebar-menu-link" id="menu-uibuttons" title="Buttons">
-              <i class="bi bi-menu-button-wide-fill"></i>
-              <span>Buttons & Alerts</span>
-            </a>
-          </li>
+    <a href="{% url 'view_diet_plan' %}" class="sidebar-menu-link">
+        <i class="bi bi-clipboard2-pulse"></i>
+        <span>My Diet Plan</span>
+    </a>
+</li>
+<!--          <li class="sidebar-menu-item">-->
+<!--            <a href=" {% url 'view_diet_plan' %} " class="sidebaendblor-menu-link" id="menu-uiforms" title="Forms and Input">-->
+<!--              <i class="bi bi-input-cursor-text"></i>-->
+<!--              <span>My Diet Plan</span>-->
+<!--            </a>-->
+<!--          </li>-->
+
         </ul>
       </div>
 
@@ -236,7 +245,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item text-danger" href=" {% static 'page-login.html' %} "><i class="bi bi-box-arrow-right"></i>
+            <li><a class="dropdown-item text-danger" href=" {% url 'logout'  %} "><i class="bi bi-box-arrow-right"></i>
                 Logout</a></li>
           </ul>
         </div>

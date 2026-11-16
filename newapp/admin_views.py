@@ -1,22 +1,23 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from newapp.forms import TrainerForm, LoginForm, ScheduleForm
-from newapp.models import Client, Trainer, Schedule, Booking
+from newapp.models import Client, Trainer, Schedule, Booking, Payment
 
-
+@login_required(login_url='login_view')
 def admin_home(request):
     return render(request, "admin/admin_base.html")
 
 
-
+@login_required(login_url='login_view')
 def admin_client_view(request):
     # data=Client.objects.all()
     data = Client.objects.filter(is_deleted=False)
 
     return render(request, "admin/admin_client_view.html", {"data":data})
 
-
+@login_required(login_url='login_view')
 def admin_trainer_view(request):
     # data =Trainer.objects.all()
     data = Trainer.objects.filter(is_deleted=False)
@@ -25,7 +26,7 @@ def admin_trainer_view(request):
 
 
 
-
+@login_required(login_url='login_view')
 def client_block(request, id):
     data = get_object_or_404(Client, id=id)
     data.is_blocked = True
@@ -34,7 +35,7 @@ def client_block(request, id):
     messages.success(request, "Client blocked successfully.")
     return redirect("admin_client_view")
 
-
+@login_required(login_url='login_view')
 def client_unblock(request, id):
     data = get_object_or_404(Client, id=id)
     data.is_blocked = False
@@ -43,7 +44,7 @@ def client_unblock(request, id):
     messages.success(request, "Client unblocked successfully.")
     return redirect("admin_client_view")
 
-
+@login_required(login_url='login_view')
 def trainer_block(request, id):
     data = get_object_or_404(Trainer, id=id)
     data.is_blocked = True
@@ -52,7 +53,7 @@ def trainer_block(request, id):
     messages.success(request, "Trainer blocked successfully.")
     return redirect("admin_trainer_view")
 
-
+@login_required(login_url='login_view')
 def trainer_unblock(request, id):
     data = get_object_or_404(Trainer, id=id)
     data.is_blocked = False
@@ -62,12 +63,14 @@ def trainer_unblock(request, id):
     return redirect("admin_trainer_view")
 
 
+@login_required(login_url='login_view')
 def client_restore(request, id):
     data = Client.objects.get(id=id)
     data.is_deleted = False
     data.save()
     return redirect('admin_client_view')
 
+@login_required(login_url='login_view')
 def deleted_clients(request):
     data = Client.objects.filter(is_deleted=True)
     return render(request, 'admin/deleted_client.html', {'data': data})
@@ -85,6 +88,8 @@ def deleted_clients(request):
 #     data.delete()
 #     return redirect("admin_client_view")
 
+
+@login_required(login_url='login_view')
 def trainer_delete(request, id):
     data = Trainer.objects.get(id=id)
     data.is_deleted = True
@@ -94,6 +99,8 @@ def trainer_delete(request, id):
     return redirect("admin_trainer_view")
 
 
+
+@login_required(login_url='login_view')
 def client_delete(request, id):
     data = Client.objects.get(id=id)
     data.is_deleted = True
@@ -103,6 +110,8 @@ def client_delete(request, id):
     return redirect("admin_client_view")
 
 
+
+@login_required(login_url='login_view')
 def trainer_update(request, id):
     data = Trainer.objects.get(id=id)
     user = data.trainer
@@ -130,6 +139,7 @@ def trainer_update(request, id):
 
 
 
+@login_required(login_url='login_view')
 def time_schedule(request):
     form=ScheduleForm()
 
@@ -142,13 +152,15 @@ def time_schedule(request):
 
 
 
-def time_schedule_view(request):
+
+@login_required(login_url='login_view')
+def time_view(request):
     data=Schedule.objects.all()
-    return render(request, "admin/time_schedule_view.html", {"data":data})
+    return render(request, "admin/time_view.html", {"data":data})
 
 
 
-
+@login_required(login_url='login_view')
 def schedule_update(request,id):
     data = Schedule.objects.get(id=id)
     form = ScheduleForm(instance=data)
@@ -157,20 +169,20 @@ def schedule_update(request,id):
         form_data=ScheduleForm(request.POST,instance=data)
         if form_data.is_valid():
             form_data.save()
-            return redirect("time_schedule_view")
+            return redirect("time_view")
 
 
 
     return render(request,"admin/schedule_update.html",{"data":form})
 
 
-
+@login_required(login_url='login_view')
 def booking_page_admin(request):
     bookings = Booking.objects.all()
     return render(request, "admin/time_schedule_view.html", {"bookings": bookings})
 
 
-
+@login_required(login_url='login_view')
 def approve_booking(request, id):
     booking = Booking.objects.get(id=id)
     booking.status = 1
@@ -179,9 +191,18 @@ def approve_booking(request, id):
     return redirect("booking_page_admin")
 
 
+
+@login_required(login_url='login_view')
 def reject_booking(request, id):
     booking = Booking.objects.get(id=id)
     booking.status = 2
     booking.save()
 
     return redirect("booking_page_admin")
+
+
+
+@login_required(login_url='login_view')
+def paid_clients(request):
+    data = Payment.objects.all()
+    return render(request, 'admin/paid_clients.html', {'data': data})

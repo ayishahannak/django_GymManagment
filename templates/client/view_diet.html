@@ -1,0 +1,43 @@
+{% extends 'client/client_base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">My Diet Plan</h2>
+
+    {% if data %}
+
+        <div class="card">
+            <div class="card-body">
+
+                <h4>{{ data.title }}</h4>
+                <p><strong>Trainer name:</strong> {{ data.trainer.name }}</p>
+                <p><strong>Date:</strong> {{ data.date }}</p>
+
+                <hr>
+
+                <h5>Breakfast</h5>
+                <p>{{ data.breakfast }}</p>
+
+                <h5>Lunch</h5>
+                <p>{{ data.lunch }}</p>
+
+                <h5>Snacks</h5>
+                <p>{{ data.snacks }}</p>
+
+                <h5>Dinner</h5>
+                <p>{{ data.dinner }}</p>
+
+            </div>
+        </div>
+
+    {% else %}
+
+        <p class="text-center">No diet plan has been assigned to you yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

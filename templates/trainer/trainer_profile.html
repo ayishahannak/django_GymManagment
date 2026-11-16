@@ -1,0 +1,53 @@
+{% extends 'trainer/trainer_base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">Trainer Profile</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Name:</strong></div>
+        <div class="col-md-8">{{ data.name }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Phone:</strong></div>
+        <div class="col-md-8">{{ data.phone }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Email:</strong></div>
+        <div class="col-md-8">{{ data.email }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Address:</strong></div>
+        <div class="col-md-8">{{ data.address }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Weight:</strong></div>
+        <div class="col-md-8">{{ data.weight }} kg</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Height:</strong></div>
+        <div class="col-md-8">{{ data.height }} cm</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Experience:</strong></div>
+        <div class="col-md-8">{{ data.experience }} years</div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'trainer_profile_update' data.id %}"
+           class="btn btn-primary">
+            Edit Profile
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

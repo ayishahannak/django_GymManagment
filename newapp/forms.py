@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from newapp import models
-from newapp.models import Client, Trainer, Login,Schedule
+from newapp.models import Client, Trainer, Login,Schedule ,Payment,DietPlan
 
 
 class LoginForm(UserCreationForm):
@@ -40,3 +40,28 @@ class ScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
         fields='__all__'
+
+
+
+
+
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class PaymentForm(forms.ModelForm):
+    exp_date = forms.DateField(widget=DateInput)
+
+    class Meta:
+        model = Payment
+        fields='__all__'
+        exclude = ('booking',)
+
+
+class DietPlanForm(forms.ModelForm):
+
+    class Meta:
+        model = DietPlan
+        fields = ['client', 'title', 'breakfast', 'lunch', 'snacks', 'dinner']

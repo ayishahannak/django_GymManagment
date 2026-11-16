@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -13,13 +14,12 @@ from newapp.models import Client, Trainer
 def index(request):
     return render(request, "index.html")
 
-
+@login_required(login_url='login_view')
 def dashboard(request):
     return render(request, "dashboard.html")
 
 
-# def loginpage(request):
-#     return render(request, "login.html")
+
 
 
 def user_add(request):
@@ -140,4 +140,12 @@ def login_view(request):
             return render(request, "login.html", {"error": "Invalid username or password."})
 
     return render(request, "login.html")
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("login_view")
+
+
 

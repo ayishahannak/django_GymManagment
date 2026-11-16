@@ -1,0 +1,45 @@
+{% extends 'client/client_base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">Client Profile</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Name:</strong></div>
+        <div class="col-md-8">{{ data.name }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Phone:</strong></div>
+        <div class="col-md-8">{{ data.phone }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Email:</strong></div>
+        <div class="col-md-8">{{ data.email }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Membership:</strong></div>
+        <div class="col-md-8">{{ data.membership }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Weight:</strong></div>
+        <div class="col-md-8">{{ data.weight }} kg</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4"><strong>Height:</strong></div>
+        <div class="col-md-8">{{ data.height }} cm</div>
+    </div>
+
+    <a href="{% url 'client_profile_update' data.id %}" class="btn btn-primary">
+        Edit Profile
+    </a>
+
+</div>
+
+{% endblock %}

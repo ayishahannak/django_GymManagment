@@ -51,3 +51,28 @@ class Booking(models.Model):
     client = models.ForeignKey(Client,on_delete=models.CASCADE)
     schedule = models.ForeignKey(Schedule,on_delete=models.CASCADE)
     status = models.IntegerField(default=0)
+
+
+
+class Payment(models.Model):
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE)
+    address = models.CharField(max_length=30)
+    phone = models.CharField(max_length=10)
+    card_number = models.CharField(max_length=16)
+    cvv = models.CharField(max_length=3)
+    exp_date = models.DateField()
+
+class DietPlan(models.Model):
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    title = models.CharField(max_length=100)
+    breakfast = models.TextField()
+    lunch = models.TextField()
+    snacks = models.TextField()
+    dinner = models.TextField()
+
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
